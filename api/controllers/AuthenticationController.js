@@ -19,6 +19,6 @@ req.logIn(user, function(err) {
   },
 logout: function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('login');
   }
 };

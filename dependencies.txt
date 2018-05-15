@@ -1,0 +1,13 @@
+Added User model
+To add ORM - npm install --save sails-hook-orm
+
+Add Passport for use authentication
+npm i --save passport
+npm i --save passport-local (this is for local auth, like passport-twitter is for twitter)
+
+Add bcrypt to encrypt password
+npm i --save bcrypt
+
+All require ajv, so npm i --save ajv
+
+Apparently also add jsonwebtoken with npm i --save jsonwebtoken
