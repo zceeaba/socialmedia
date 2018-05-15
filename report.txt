@@ -1,0 +1,4 @@
+1.Created user model with different attributes:
+  1.Username,password,Email,Name,surname
+  2.Peformed validation for the different fields
+2.Installed dependecy orm-hook for multiple purposes(information to be added)

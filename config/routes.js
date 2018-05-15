@@ -27,6 +27,12 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  'get /login': { view: 'pages/login' },
+  'post /login': 'AuthenticationController.login',
+  '/logout':'AuthenticationController.logout',
+  'get /signup': { view: 'pages/signup' },
+  'post /signup':'AuthenticationController.signup',
+
 
   /***************************************************************************
   *                                                                          *
