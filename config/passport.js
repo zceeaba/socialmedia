@@ -1,31 +1,44 @@
-const passport = require('passport'),
-      LocalStrategy = require('passport-local').Strategy,
-      bcrypt = require('bcrypt');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
+
 passport.serializeUser(function(user, cb) {
   cb(null, user.id);
 });
-passport.deserializeUser(function(id, cb){
-  User.findOne({id}, function(err, user) {
+
+passport.deserializeUser(function(id, cb) {
+  User.findOne(id, function(err, user) {
     cb(err, user);
   });
 });
-passport.use(new LocalStrategy({
-  usernameField: 'username',
-  passportField: 'password'
-}, function(username, password, cb){
-User.findOne({username: username}, function(err, user){
-    if(err) return cb(err);
-    if(!user) return cb(null, false, {message: 'Username not found'});
-    console.log(user.email,user.username);
-    bcrypt.compare(password, user.password, function(err, res){
-          console.log(password,user.password);
-          if(password!=user.password) return cb(null, false, { message: 'Invalid Password' });
-    let userDetails = {
-            email: user.email,
-            username: user.username,
-            id: user.id
-          };
-    return cb(null, userDetails, { message: 'Login Succesful'});
-        });
+
+passport.use(new LocalStrategy(function(username, password, cb) {
+  User.findOne({
+    username: username
+  }, function(err, user) {
+
+    if (err) return cb(err);
+
+    if (!user) return cb(null, false, {
+      message: 'Username not found'
+    });
+
+    console.log(user.email, user.username);
+    bcrypt.compare(password, user.password, function(err, res) {
+      console.log(password, user.password);
+      if (password != user.password) return cb(null, false, {
+        message: 'Invalid Password'
+      });
+
+      let userDetails = {
+        email: user.email,
+        username: user.username,
+        id: user.id
+      };
+
+      return cb(null, userDetails, {
+        message: 'Login Succesful'
+      });
+    });
   });
 }));

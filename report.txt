@@ -3,3 +3,5 @@
   2.Peformed validation for the different fields
 
 2.Done authentication
+
+Used chrome devtools to debug and check if the pages work on mobile devices

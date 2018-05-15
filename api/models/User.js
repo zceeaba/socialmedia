@@ -5,7 +5,7 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -37,18 +37,22 @@ module.exports = {
       required: true,
     },
   },
-  /*
+
+  // to toggle if password is displayed
   customToJSON: function() {
- return _.omit(this, ['password'])
+    // Return a shallow copy of this record with the password and ssn removed.
+    return _.omit(this, ['password'])
   },
-  beforeCreate: function(user, cb){
-    bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(user.password, salt, null, function(err, hash){
-        if(err) return cb(err);
-        user.password = hash;
-        return cb();
-      });
-    });
-  }
-*/
+
+  // beforeCreate: function(user, cb) {
+  //   bcrypt.hash(user.password, 10, function(err, hash) {
+  //     if (err) {
+  //       return cb(err);
+  //     } else {
+  //       user.password = hash;
+  //       return cb();
+  //     }
+  //   });
+  // }
+
 };
