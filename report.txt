@@ -1,7 +1,11 @@
-1.Created user model with different attributes:
+1. Created user model with different attributes:
   1.Username,password,Email,Name,surname
   2.Peformed validation for the different fields
 
-2.Done authentication
+2. Done authentication
 
-Used chrome devtools to debug and check if the pages work on mobile devices
+3. Used chrome devtools to debug and check if the pages work on mobile devices.
+
+4. Use (req.user) to check if the current session is authenticated - Passport background session stuffs
+
+5. In sails layout.ejs your styles and scripts need to be outside the commented section as it is overwritten by Sails
