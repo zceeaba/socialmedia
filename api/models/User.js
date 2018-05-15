@@ -44,15 +44,15 @@ module.exports = {
     return _.omit(this, ['password'])
   },
 
-  // beforeCreate: function(user, cb) {
-  //   bcrypt.hash(user.password, 10, function(err, hash) {
-  //     if (err) {
-  //       return cb(err);
-  //     } else {
-  //       user.password = hash;
-  //       return cb();
-  //     }
-  //   });
-  // }
+  beforeCreate: function(user, cb) {
+    bcrypt.hash(user.password, 10, function(err, hash) {
+      if (err) {
+        return cb(err);
+      } else {
+        user.password = hash;
+        return cb();
+      }
+    });
+  }
 
 };
