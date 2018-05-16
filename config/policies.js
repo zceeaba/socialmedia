@@ -10,13 +10,12 @@
 
 module.exports.policies = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
+  // '*': 'isLoggedIn',
 
-  // '*': true,
+  AuthenticationController: {
+
+    'logIn': true,
+    'logout': true
+  }
 
 };
