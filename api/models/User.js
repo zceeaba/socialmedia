@@ -44,13 +44,13 @@ module.exports = {
     return _.omit(this, ['password'])
   },
 
-  beforeCreate: function(user, cb) {
+  beforeCreate: function(user, proceed) {
     bcrypt.hash(user.password, 10, function(err, hash) {
       if (err) {
-        return cb(err);
+        return proceed(err);
       } else {
         user.password = hash;
-        return cb();
+        return proceed();
       }
     });
   }
