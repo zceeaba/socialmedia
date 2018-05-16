@@ -39,6 +39,10 @@ module.exports.routes = {
   },
   'post /signup': 'AuthenticationController.signup',
 
+  'get /error': {
+    view: 'pages/error'
+  },
+
 
   /***************************************************************************
    *                                                                          *

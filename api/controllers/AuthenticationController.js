@@ -9,30 +9,26 @@ module.exports = {
           message: info.message,
           user
         });
+        // return res.redirect('error');
       }
 
       req.logIn(user, function (err) {
-        if (err) res.send(err);
-        return res.redirect('/')
+        if (err) return res.send(err);
+        return res.redirect('/');
       });
     })(req, res);
   },
 
   logout: function (req, res) {
     req.logout();
-    setTimeout(function () {
-      return res.redirect('login');
-    }, 2000);
+    return res.redirect('login');
   },
 
   signup: function (req, res, next) {
     // create user and store in a database
     User.create(req.allParams(), function (err, user) {
-      if (err) {
-
-      } return next(err);
-
-      return res.redirect('login')
+      if (err) return res.send(err);
+      return res.redirect('login');
     });
   }
 
