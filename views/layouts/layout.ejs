@@ -12,14 +12,20 @@
 
   <!--STYLES-->
   <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/navbar.css">
   <!--STYLES END-->
+
+  <!--Bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
+  <!--Font Awesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </head>
 
 <body>
-  <div id="page-wrap">
-    <header class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+  <div class="bg">
+    <header class="navbar navbar-expand-sm">
 
       <div class="container-fluid">
         <a class="navbar-brand ml-2 mr-0" href="/">Webtech</a>
@@ -45,14 +51,14 @@
                 <a class="nav-link ml-2 mr-2" href="/logout">Log out</a>
               </li>
 
-            <% } else { %>
-              <li class="nav-item">
-                <a class="nav-link ml-2 mr-2" href="/login">Log in</a>
-              </li>
-              <li class="nav-item">
-                <a class="btn btn-outline-info" href="/signup">Sign up</a>
-              </li>
-            <% } %>
+              <% } else { %>
+                <li class="nav-item">
+                  <a class="nav-link ml-2 mr-2" href="/login">Log in</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-info" href="/signup">Sign up</a>
+                </li>
+                <% } %>
           </ul>
         </div>
       </div>
@@ -61,27 +67,23 @@
     <%- body %>
 
     <footer class="footer">
-      <small class="ml-2 mr-1">
-        Gregor Bajsic
-      </small>
-      <small>
-        &
-      </small>
-      <small class=" ml-1 mr-3">
-        Abhishekh Baskaran
-      </small>
+      Gregor Bajsic
+      <a href="https://github.com/Bajso" target="_blank"><i class="fab fa-github btn btn-dark ml-2 mr-4" href="#" role="button"> Github</i></a>
+      Abhishekh Baskaran
+      <a href="https://github.com/zceeaba" target="_blank"><i class="fab fa-github btn btn-dark ml-2 mr-2" href="#" role="button"> Github</i></a>
     </footer>
 
-
-    <!--SCRIPTS-->
-    <script src="/dependencies/sails.io.js"></script>
-    <!--SCRIPTS END-->
-
-    <!--Bootstrap-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   </div>
+
+  <!--SCRIPTS-->
+  <script src="/dependencies/sails.io.js"></script>
+  <!--SCRIPTS END-->
+
+  <!--Bootstrap-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
