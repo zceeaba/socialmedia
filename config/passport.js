@@ -23,6 +23,9 @@ User.findOne({username: username}, function(err, user){
     let userDetails = {
             email: user.email,
             username: user.username,
+            name: user.name,
+            surname: user.surname,
+            password: user.password,
             id: user.id
           };
     return cb(null, userDetails, { message: 'Login Succesful'});

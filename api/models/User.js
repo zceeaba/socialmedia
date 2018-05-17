@@ -36,6 +36,10 @@ module.exports = {
       type: 'string',
       required: true,
     },
+    events: {
+  collection: 'events',
+  via: 'Users'
+    }
   },
   /*
   customToJSON: function() {

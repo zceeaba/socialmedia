@@ -1,0 +1,12 @@
+<h1> Events</h1>
+<p> Welcome to the event creation page</p>
+<%if (req.user) { %>
+  <form method="get" action="/usereventjoin">
+  <ul>
+  <% for(var i=0; i<userobj.length; i++) {%>
+      <li><%= userobj[i].eventname %></li>
+  <% } %>
+  </ul>
+  </form>
+
+<% } %>
