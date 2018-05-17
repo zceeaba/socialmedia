@@ -29,13 +29,19 @@ module.exports.routes = {
   },
 
   'get /login': {
-    view: 'pages/login'
+    view: 'pages/login',
+    locals: {
+      errMessage: null
+    }
   },
   'post /login': 'AuthenticationController.login',
   '/logout': 'AuthenticationController.logout',
 
   'get /signup': {
-    view: 'pages/signup'
+    view: 'pages/signup',
+    locals: {
+      errMessage: null
+    }
   },
   'post /signup': 'AuthenticationController.signup',
 

@@ -21,3 +21,7 @@ Background photo:
 8. Custom css for footer and navbar
 
 9. Added SVG icons and links to Github repos
+
+10. "use strict" is pretty much implicit in new versions of JS
+
+11. using Atom IDE with ESlint to check the JS syntax
