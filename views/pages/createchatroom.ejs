@@ -1,0 +1,9 @@
+<h1> Events</h1>
+<p> Welcome to the Chat creation page</p>
+<%if (req.user) { %>
+<form action="/createroom" method="get" id="createevent">
+    <label>Create Event:</label>
+    <input type="text" name="eventname" id="input"/>
+    <input type="submit" value="submit" action="/createroom">
+</form>
+<% } %>

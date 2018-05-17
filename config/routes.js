@@ -29,17 +29,23 @@ module.exports.routes = {
   },
   'get /login': { view: 'pages/login' },
   'post /login': 'AuthenticationController.login',
+
+
   'get /userpage':{view:'pages/userpage'},
+
+
   'get /eventslist':'EventsController.findevents',
   '/createevent':{view:'pages/createevent'},
   'get /usereventjoin':'EventsController.connecteventtouser',
   'get /showevents':'EventsController.showevents',
   'get /finishedcreateevent':'EventsController.createevent',
+
+
   '/logout':'AuthenticationController.logout',
   'get /signup': { view: 'pages/signup' },
   'post /signup':'AuthenticationController.signup',
 
-
+  '/createroom':'ChatroomController.createchatroom',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

@@ -5,8 +5,10 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+
 module.exports = {
   createevent:function(request,response){
+      var ChatroomController = require('./ChatroomController');
       eventname=request.param("eventname");
       eventtype=request.param("eventtype");
       eventdate=request.param("eventdate");
@@ -16,9 +18,11 @@ module.exports = {
       events.create({eventname:eventname,eventtype:eventtype,
       eventdate:eventdate,
       eventstart:eventstart,eventend:eventend}).exec(console.log);
-      return response.view('pages/homepage');
+      ChatroomController.createchatroom(request,response,eventname);
+      //return response.view('pages/homepage');
     },
-    findevents: function(req, res) {
+  findevents: function(req, res) {
+    console.log("check user");
     events.find().exec(function(err, eventslist) {
       var listofevents = eventslist;
       console.log(listofevents)
