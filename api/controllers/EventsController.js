@@ -9,6 +9,7 @@
 module.exports = {
   createevent:function(request,response){
       var ChatroomController = require('./ChatroomController');
+      user=request.user;
       eventname=request.param("eventname");
       eventtype=request.param("eventtype");
       eventdate=request.param("eventdate");
@@ -18,7 +19,7 @@ module.exports = {
       events.create({eventname:eventname,eventtype:eventtype,
       eventdate:eventdate,
       eventstart:eventstart,eventend:eventend}).exec(console.log);
-      ChatroomController.createchatroom(request,response,eventname);
+      ChatroomController.createchatroom(request,response,eventname,user);
       //return response.view('pages/homepage');
     },
   findevents: function(req, res) {

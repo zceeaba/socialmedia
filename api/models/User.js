@@ -26,7 +26,6 @@ module.exports = {
       type: 'string',
       isEmail: true,
       required: true,
-      unique: true,
     },
     name: {
       type: 'string',
@@ -39,7 +38,11 @@ module.exports = {
     events: {
   collection: 'events',
   via: 'Users'
-    }
+  },
+  rooms:{
+    collection:'ChatRooms',
+    via:'users'
+  }
   },
   /*
   customToJSON: function() {

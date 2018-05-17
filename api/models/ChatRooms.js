@@ -16,8 +16,11 @@ module.exports = {
     messages:{
       collection:'Messages',
       via:'room'
+    },
+    users:{
+      collection:'User',
+      via:'rooms'
     }
-
   },
 
 };

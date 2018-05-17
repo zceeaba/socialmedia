@@ -8,22 +8,18 @@ module.exports = {
     },
     eventtype: {
       type: 'string',
-      unique: true,
       required: true,
     },
     eventdate: {
       type: 'string',
-      unique: true,
       required: true,
     },
     eventstart: {
       type: 'string',
-      unique: true,
       required: true,
     },
     eventend: {
       type: 'string',
-      unique: true,
       required: true,
     },
 
