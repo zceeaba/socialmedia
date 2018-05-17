@@ -39,12 +39,14 @@ module.exports = {
       return response.view('pages/homepage');
     },
     showevents:function(request,response){
-      userid=user.id;
+      userid=request.param("userid");
       User.find({id:userid}).exec(function(err,userobject){
-        console.log("hallelujah")
-        console.log(userid)
-        console.log(userobject)
-        return response.view('pages/showevents',{userobj:userobject});
+        User.find({id:userid}).populate('events').exec(function(err,eventobject){
+          console.log("hallelujah")
+          console.log(userid)
+          console.log(eventobject[0].events)
+          return response.view('pages/showevents',{eventobj:eventobject});
+        });
       })
     }
 };
