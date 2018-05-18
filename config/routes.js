@@ -46,6 +46,8 @@ module.exports.routes = {
   'post /signup':'AuthenticationController.signup',
 
   '/createroom':'ChatroomController.createchatroom',
+  '/ChatController':'ChatroomController.addconv'
+  '/messages':'MessagesController.do'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

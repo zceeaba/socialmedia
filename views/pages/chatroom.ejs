@@ -1,7 +1,19 @@
 <!doctype html>
 <html>
   <head>
-    <title><%= roomname %></title>
+
+    <!-- Bring in the socket.io client -->
+    <script type="text/javascript" src="/js/socket.io.js"></script>
+    <!-- then beef it up with some convenience logic for talking to Sails.js -->
+    <script type="text/javascript" src="/js/sails.io.js"></script>
+    <!-- listen on socket.io for incoming messages -->
+    <script type="text/javascript" src="/js/app.js"></script>
+
+    <!--SCRIPTS-->
+    <script src="/dependencies/sails.io.js"></script>
+    <script src="/js/app.js"></script>
+    <!--SCRIPTS END-->
+
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }

@@ -25,7 +25,8 @@ module.exports = {
     }
   },
   addconv:function(request,response){
-    var data_from_client=request.params.all();
+
+    var data_from_client=request.allParams();
     if (!request.isSocket) {
         return response.badRequest();
       }
@@ -33,12 +34,15 @@ module.exports = {
       Messages.create(data_from_client).exec(function(data_from_client){
         console.log(data_from_client);
         Messages.publish({
-          id:data_from_client.id,, message : data_from_client.message , user:data_from_client.user
+          id:data_from_client.id, message : data_from_client.message , user:data_from_client.user
         });
       })
     }
     else if (request.isSocket){
-      Messages.watch(request.socket);
+
+      var socketarray=[]
+      socketarray[0]=request.socket.id
+      Messages.publish(request.socket,socketarray);
       console.log( 'User subscribed to ' + request.socket.id );
     }
   }
