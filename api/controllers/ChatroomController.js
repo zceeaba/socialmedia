@@ -23,6 +23,24 @@ module.exports = {
       });
       return response.view('pages/chatroom',{roomname:eventname})
     }
+  },
+  addconv:function(request,response){
+    var data_from_client=request.params.all();
+    if (!request.isSocket) {
+        return response.badRequest();
+      }
+    if (request.isSocket && request.method=="POST"){
+      Messages.create(data_from_client).exec(function(data_from_client){
+        console.log(data_from_client);
+        Messages.publish({
+          id:data_from_client.id,, message : data_from_client.message , user:data_from_client.user
+        });
+      })
+    }
+    else if (request.isSocket){
+      Messages.watch(request.socket);
+      console.log( 'User subscribed to ' + request.socket.id );
+    }
   }
 
 };
