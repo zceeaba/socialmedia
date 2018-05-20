@@ -1,4 +1,4 @@
-module.exports = async function (req, res, proceed) {
+module.exports = async function(req, res, proceed) {
 
   // if valid user
   if (req.user) {
