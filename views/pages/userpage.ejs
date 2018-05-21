@@ -82,34 +82,34 @@ border: 1px solid purple;
     <div id="LeftCol">
         <div id="Photo"></div>
         <div id="ProfileOptions">
-        <%= user.username %>
+        <%= req.user.username %>
         </div>
     </div>
 
     <div id="Info">
         <p>
             <strong>Name:</strong>
-            <span><%= user.username %></span>
+            <span><%= req.user.username %></span>
         </p>
         <p>
             <strong>Name:</strong>
-            <span><%= user.email %></span>
+            <span><%= req.user.email %></span>
         </p>
         <p>
             <strong>Name:</strong>
-            <span><%= user.name %><</span>
+            <span><%= req.user.name %><</span>
         </p>
         <p>
             <strong>Name:</strong>
-            <span><%= user.surname %></span>
+            <span><%= req.user.surname %></span>
         </p>
         <p>
             <strong>Name:</strong>
-            <span><%= user.password %></span>
+            <span><%= req.user.password %></span>
         </p>
         <p>
           <strong>ID:</strong>
-          <span><%= user.id %></span>
+          <span><%= req.user.id %></span>
     </div>
     <!-- Needed because other elements inside ProfilePage have floats -->
     <div style="clear:both"></div>

@@ -6,24 +6,29 @@
  */
 
 module.exports = {
-  do: function(request, response){
-        if(request.socket===true){
-            var secret = request.param('secret');
-            User.find({username: 'jay'}, function(err, bobs) {
-            if (err) {return response.serverError(err);}
-
-            // Tell the secret to every client who is subscribed to these users,
-            // except for the client that made this request in the first place.
-            // Note that the secret is wrapped in a dictionary with a `verb` property -- this is not
-            // required, but helpful if you'll also be listening for events from Sails blueprints.
-            User.publish(_.pluck(bobs, 'id'), {
-              verb: 'published',
-              theSecret: secret
-            }, request);
-            console.log(_.pluck(bobs, 'id'));
-            return response.send();
+    chooseroomname:function(request,response){
+      if(request.user){
+        User.find({id:request.user.id}).exec(function(err,userobject){
+          User.find({id:request.user.id}).populate('events').exec(function(err,eventobject){
+            return response.view('pages/chooseroomname',{eventobj:eventobject});
           });
+        })
+      }
+      else{
+        response.redirect("/")
+      }
+    },
 
-        }
+    subscribe: function(req, res) {
+    if( ! req.isSocket) {
+      return res.badRequest();
     }
+
+    sails.sockets.join(req.socket, 'messages');
+
+    return res.ok();
+  },
+  _config: {}
+
+
 }

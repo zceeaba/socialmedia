@@ -3,3 +3,35 @@
   2.Peformed validation for the different fields
 
 2.Done authentication
+3.File heirarchy:
+  Assets:
+  1.importer.css
+  2.js/sails.io.js
+  3.js/socket.io.js
+  4.linker/js/app.js
+  5.linker/js/jquery-2.1.0.min.js
+  6.assets/styles/bootstrap.min.css
+  Config:
+  1.bootstrap.js
+  2.socket.js
+  3.routes.js
+  Views:
+  1.layout.ejs
+  2.chat.ejs
+  3.chatroom.ejs
+  4.chooseroomname.ejs
+  5.createchatroom.ejs
+  6.eventslist.ejs
+  7.showevents.ejs
+  8.signup.ejs
+  9.userpage.ejs
+  Api/Controller:
+  1.AuthenticationController
+  2.EventsController
+  3.MessagesController
+  4.ChatRoomController
+  Api/Model:
+  1.ChatRooms
+  2.events
+  3.Messages
+  4.User

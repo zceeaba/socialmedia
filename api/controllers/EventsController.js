@@ -8,6 +8,7 @@
 
 module.exports = {
   createevent:function(request,response){
+    if(request.user){
       var ChatroomController = require('./ChatroomController');
       user=request.user;
       eventname=request.param("eventname");
@@ -15,43 +16,53 @@ module.exports = {
       eventdate=request.param("eventdate");
       eventstart=request.param("eventstart");
       eventend=request.param("eventend");
-      console.log(eventname,eventtype);
       events.create({eventname:eventname,eventtype:eventtype,
       eventdate:eventdate,
       eventstart:eventstart,eventend:eventend}).exec(console.log);
       ChatroomController.createchatroom(request,response,eventname,user);
-      //return response.view('pages/homepage');
+    }
+    else{
+      response.redirect('/');
+    }
     },
-  findevents: function(req, res) {
-    console.log("check user");
-    events.find().exec(function(err, eventslist) {
-      var listofevents = eventslist;
-      console.log(listofevents)
-      res.view("pages/eventslist",{listofevents:listofevents});
-    });
+  findevents: function(request, response) {
+    if(request.user){
+      events.find().exec(function(err, eventslist) {
+        var listofevents = eventslist;
+        response.view("pages/eventslist",{listofevents:listofevents});
+      });
+    }
+    else{
+      response.redirect('/');
+    }
   },
     connecteventtouser:function(request,response){
-      eventid=request.param("events");
-      user=request.param("user");
-      console.log("hallelujah")
-      events.find({id:eventid}).exec(function(err, eventobject) {
-        User.find({id:user}).exec(function(err, userobject) {
-          console.log(user,eventid);
-          User.addToCollection(user, 'events').members([eventid]).exec(console.log);
-          console.log("babababee")
+      if (request.user) {
+        eventid=request.param("events");
+        user=request.param("user");
+        console.log("hallelujah")
+        events.find({id:eventid}).exec(function(err, eventobject) {
+          User.find({id:user}).exec(function(err, userobject) {
+            console.log(user,eventid);
+            User.addToCollection(user, 'events').members([eventid]).exec(console.log);
+          });
         });
-      });
-      return response.view('pages/homepage');
+        return response.view('pages/homepage');
+      }
+      else{
+        response.redirect('/');
+      }
     },
     showevents:function(request,response){
-      userid=request.param("userid");
-      User.find({id:userid}).exec(function(err,userobject){
-        User.find({id:userid}).populate('events').exec(function(err,eventobject){
-          console.log("hallelujah")
-          console.log(userid)
-          console.log(eventobject[0].events)
+      if (request.user) {
+      User.find({id:request.user.id}).exec(function(err,userobject){
+        User.find({id:request.user.id}).populate('events').exec(function(err,eventobject){
           return response.view('pages/showevents',{eventobj:eventobject});
         });
       })
     }
-};
+    else{
+      response.redirect('/');
+    }
+},
+}

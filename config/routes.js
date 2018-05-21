@@ -41,13 +41,25 @@ module.exports.routes = {
   'get /finishedcreateevent':'EventsController.createevent',
 
 
+
   '/logout':'AuthenticationController.logout',
   'get /signup': { view: 'pages/signup' },
   'post /signup':'AuthenticationController.signup',
-
+  '/chat':'ChatRoomController.chat',
   '/createroom':'ChatroomController.createchatroom',
-  '/ChatController':'ChatroomController.addconv'
-  '/messages':'MessagesController.do'
+  '/listchatrooms':'ChatRoomController.findchatrooms',
+  '/connecteventtochatroom':'ChatRoomController.connecteventtochatroom',
+  '/chooseroomname':'MessagesController.chooseroomname',
+
+  /*
+
+  '/subscribe': 'MessagesController.subscribe',
+
+
+  '/testsocket':'ChatroomController.testsocket',
+  '/testpage':{ view: 'pages/socketpage' },
+*/
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

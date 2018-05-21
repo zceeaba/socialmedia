@@ -8,43 +8,85 @@
 module.exports = {
   createchatroom:function(request,response,eventname,user){
     //eventname=request.param("eventname");
-    var exists=false;
-    ChatRooms.find({roomname:eventname}).exec(function(err,roomobject){
-      exists=true;
-    });
-    if(exists===false){
-      newroomname=eventname;
-      ChatRooms.create({roomname:newroomname}).exec(console.log);
-      events.find({eventname:newroomname}).exec(function(err, eventobject){
-        ChatRooms.find({roomname:newroomname}).exec(function(err, roomobject){
-          User.addToCollection(user.id, 'events').members([eventobject[0].id]).exec(console.log);
-          User.addToCollection(user.id, 'rooms').members([roomobject[0].id]).exec(console.log);
-        });
+    if (request.user) {
+      var exists=false;
+      var listofrooms;
+      ChatRooms.find({roomname:eventname}).exec(function(err,roomobject){
+        exists=true;
       });
-      return response.view('pages/chatroom',{roomname:eventname})
+      if(exists===false){
+        newroomname=eventname;
+        ChatRooms.create({roomname:newroomname}).exec(console.log);
+        events.find({eventname:newroomname}).exec(function(err, eventobject){
+          ChatRooms.find({roomname:newroomname}).exec(function(err, roomobject){
+            User.addToCollection(user.id, 'events').members([eventobject[0].id]).exec(console.log);
+            User.addToCollection(user.id, 'rooms').members([roomobject[0].id]).exec(console.log);
+          });
+        });
+        User.findOne({id:request.user.id}).populate('rooms').exec(function(err, userobject){
+          listofrooms=JSON.parse(JSON.stringify(userobject.rooms));
+          return response.view('pages/homepage')
+        });
+      }
+  }
+  else {
+      response.redirect('/');
+  }
+  },
+  findchatrooms:function(request,response){
+    if (request.user) {
+    var listofrooms;
+    User.findOne({id:request.user.id}).populate('rooms').exec(function(err, userobject){
+      listofrooms=JSON.parse(JSON.stringify(userobject.rooms));
+      return response.view('pages/chatroom',{username:request.user.username,listofrooms:listofrooms})
+    });
+  }
+  else {
+      response.redirect('/');
+  }
+  },
+
+  connecteventtochatroom:function(request,response){
+    if (request.user) {
+    var ChatroomController = require('./ChatroomController');
+    var listofrooms;
+    /*
+    User.findOne({id:request.user.id}).populate('events').exec(function(err, userobject){
+      listofevents=JSON.parse(JSON.stringify(userobject.events));
+      for(var i=0;i<listofevents.length;i++){
+          User.findOne({id:request.user.id}).populate('rooms').exec(function(err, userobject){
+            listofrooms=JSON.parse(JSON.stringify(userobject.rooms));
+            console.log(listofrooms,"list of rooms")
+            for(var j=0;j<listofrooms.length;j++){
+              if(listofrooms[j].roomname===listofevents[i].eventname){
+                console.log(listofrooms[j],listofevents[i])
+                console.log("found existing chat room")
+              }
+              else{
+                console.log("no existing chat room")
+                console.log(listofrooms[j].roomname,listofevents[i].eventname)
+                ChatRooms.create({roomname:listofevents[i].eventname});
+                ChatRooms.find({roomname:listofevents[i].eventname}).exec(function(err,roomobject){
+                  User.addToCollection(request.user.id, 'rooms').members([roomobject[0].id]);
+                });
+              }
+          }
+        })
+        */
+    ChatroomController.findchatrooms(request,response);
+  }
+  else{
+    response.redirect('/');
+  }
+  },
+
+  chat: function (req, res) {
+    if (req.user) {
+        roomname=req.param("events");
+        res.view('pages/chat',{username: req.user.username,roomname:roomname});
+    } else {
+        res.redirect('/');
     }
   },
-  addconv:function(request,response){
-
-    var data_from_client=request.allParams();
-    if (!request.isSocket) {
-        return response.badRequest();
-      }
-    if (request.isSocket && request.method=="POST"){
-      Messages.create(data_from_client).exec(function(data_from_client){
-        console.log(data_from_client);
-        Messages.publish({
-          id:data_from_client.id, message : data_from_client.message , user:data_from_client.user
-        });
-      })
-    }
-    else if (request.isSocket){
-
-      var socketarray=[]
-      socketarray[0]=request.socket.id
-      Messages.publish(request.socket,socketarray);
-      console.log( 'User subscribed to ' + request.socket.id );
-    }
-  }
 
 };

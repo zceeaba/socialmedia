@@ -8,26 +8,19 @@
 module.exports = {
 
   attributes: {
-    chatroom_id: {
-        type: 'number',
-        required: true
+    roomname:{
+      type:'string',
+      required:true,
     },
-
     username: {
         type: 'string',
         required: true
     },
 
     content: {
-        type: 'string',
+        type: 'text',
         required: true
     },
 
-    room:{
-      model:'ChatRooms',
-    }
-
   },
-
-
 };

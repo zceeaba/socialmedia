@@ -13,10 +13,6 @@ module.exports = {
       required:true,
       unique:true
     },
-    messages:{
-      collection:'Messages',
-      via:'room'
-    },
     users:{
       collection:'User',
       via:'rooms'
