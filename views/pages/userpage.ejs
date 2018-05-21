@@ -1,83 +1,77 @@
-
 <% if (req.user) { %>
 
-<div id="ProfilePage">
+  <div id="ProfilePage">
     <div id="LeftCol">
-        <div id="ProfileOptions">
+      <div id="ProfileOptions">
         <form id="form1" runat="server">
-          <input type='file' id="imgInp" />
+          <input type='file' id="imgInp"/>
           <img id="blah" src="#" alt="your image" width="220" height="220" />
         </form>
       </div>
     </div>
 
     <div id="Info">
-        <p>
-            <strong>Name:</strong>
-            <span><%= req.user.username %></span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span><%= req.user.email %></span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span><%= req.user.name %><</span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span><%= req.user.surname %></span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span><%= req.user.password %></span>
-        </p>
-        <p>
-          <strong>ID:</strong>
-          <span><%= req.user.id %></span>
+      <p>
+        <strong>Username:</strong>
+        <span><%= req.user.username %></span>
+      </p>
+      <p>
+        <strong>Email:</strong>
+        <span><%= req.user.email %></span>
+      </p>
+      <p>
+        <strong>Name:</strong>
+        <span><%= req.user.name %><</span>
+      </p>
+      <p>
+        <strong>Surname:</strong>
+        <span><%= req.user.surname %></span>
+      </p>
     </div>
     <!-- Needed because other elements inside ProfilePage have floats -->
     <div style="clear:both"></div>
-</div>
+  </div>
 
 
-<script>
-  let userid="<%= req.user.id %>"
-</script>
+  <script>
+    let userid = "<%= req.user.id %>"
+  </script>
 <% } %>
-<script type='text/javascript'>
-var UserModel = Backbone.Model.extend({
-    urlRoot: '/user',
-});
 
-var UserCollection = Backbone.Collection.extend({
+<script type='text/javascript'>
+  var UserModel = Backbone.Model.extend({
+    urlRoot: '/user',
+  });
+
+  var UserCollection = Backbone.Collection.extend({
     url: '/user',
     model: UserModel,
-});
+  });
 
-var users = new UserCollection();
-users.fetch();
+  var users = new UserCollection();
+  users.fetch();
 
-function readURL(input) {
+  function readURL(input) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+      var reader = new FileReader();
 
-        reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-            console.log('RESULT', reader.result)
-            var user = users.get(userid)
-            console.log(user)
-            user.set({image:reader.result}, {wait: true});
-        }
+      reader.onload = function(e) {
+        $('#blah').attr('src', e.target.result);
+        console.log('RESULT', reader.result)
+        var user = users.get(userid)
+        console.log(user)
+        user.set({
+          image: reader.result
+        }, {
+          wait: true
+        });
+      }
 
-        reader.readAsDataURL(input.files[0]);
+      reader.readAsDataURL(input.files[0]);
     }
-}
+  }
 
-$("#imgInp").change(function(){
+  $("#imgInp").change(function() {
     readURL(this);
-});
-
-
-
+  });
 </script>

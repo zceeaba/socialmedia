@@ -1,57 +1,44 @@
-#ProfilePage
-{
-    margin: 50px auto;
-    width: 635px;
-
+#ProfilePage {
+  margin: 50px auto;
+  width: 635px;
+  background-color: white;
 }
 
-#Photo
-{
-    /* Width and height of photo container */
-    width: 200px;
-    height: 200px;
-
-/* For visibility. Delete me */
-
+#Photo {
+  /* Width and height of photo container */
+  width: 200px;
+  height: 200px;
 }
 
-#LeftCol
-{
-    /* Move it to the left */
-    float: left;
-    width: 200px;
-    text-align: center;
-    /* Move it away from the content */
-    margin-right: 20px;
-
+#LeftCol {
+  /* Move it to the left */
+  float: left;
+  width: 200px;
+  text-align: center;
+  /* Move it away from the content */
+  margin-right: 20px;
 }
-#PhotoOptions
-{
-    text-align: center;
-    width: 200px;
 
+#PhotoOptions {
+  text-align: center;
+  width: 200px;
 }
-#Info
-{
-    width: 400px;
-    text-align: center;
-    /* Move it to the right */
-    float: right;
-/* For visibility. Delete me */
 
+#Info {
+  width: 400px;
+  text-align: center;
+  /* Move it to the right */
+  float: right;
 }
-#Info strong
-{
-    /* Give it a width */
-    display: inline-block;
-    width: 100px;
-/* For visibility. Delete me */
 
+#Info strong {
+  /* Give it a width */
+  display: inline-block;
+  width: 100px;
 }
-#Info span
-{
-    /* Give it a width */
-    display: inline-block;
-    width: 250px;
 
+#Info span {
+  /* Give it a width */
+  display: inline-block;
+  width: 250px;
 }

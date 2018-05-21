@@ -49,11 +49,18 @@ module.exports.routes = {
     view: 'pages/userpage'
   },
 
+  'get /logo': {
+    view: 'pages/logo',
+    locals: {
+      layout: false
+    }
+  },
 
   'get /eventslist': 'EventsController.findevents',
   '/createevent': {
     view: 'pages/createevent'
   },
+
   'get /usereventjoin': 'EventsController.connecteventtouser',
   'get /showevents': 'EventsController.showevents',
   'get /finishedcreateevent': 'EventsController.createevent',
@@ -61,13 +68,10 @@ module.exports.routes = {
   '/chat': 'ChatRoomController.chat',
   '/chooseroomname': 'MessagesController.chooseroomname',
 
-
   //chatroom routes not required to be rendered:dont need to be bootstrapped
   '/createroom': 'ChatroomController.createchatroom',
   '/listchatrooms': 'ChatRoomController.findchatrooms',
   '/connecteventtochatroom': 'ChatRoomController.connecteventtochatroom',
-
-
 
   /***************************************************************************
    *                                                                          *

@@ -14,11 +14,7 @@ module.exports = {
           return res.view('pages/login', {
             errMessage: err
           });
-        }/*
-        return res.view('pages/userpage', {
-          message: info.message,
-          user: user
-        });*/
+        }
         return res.redirect('/');
       });
     })(req, res);
