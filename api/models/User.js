@@ -42,6 +42,9 @@ module.exports = {
   rooms:{
     collection:'ChatRooms',
     via:'users'
+  },
+  image:{
+    type: 'string',
   }
   },
   /*

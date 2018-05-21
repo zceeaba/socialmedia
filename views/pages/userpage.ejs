@@ -1,6 +1,9 @@
 <html>
 <head>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
 </head>
 <style type="text/css">
 #ProfilePage
@@ -67,11 +70,10 @@ border: 1px solid purple;
 <body>
 <div id="ProfilePage">
     <div id="LeftCol">
-        <div id="Photo"></div>
         <div id="ProfileOptions">
         <form id="form1" runat="server">
-            <input type='file' id="imgInp" />
-            <img id="blah" src="#" alt="your image" />
+          <input type='file' id="imgInp" />
+          <img id="blah" src="#" alt="your image" width="220" height="220" />
         </form>
       </div>
     </div>
@@ -105,50 +107,11 @@ border: 1px solid purple;
     <div style="clear:both"></div>
 </div>
 </body>
+<script>
+  let userid="<%= req.user.id %>"
+</script>
 <% } %>
 <script type='text/javascript'>
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-            var img = new Image();
-            var ctx = canvas.getContext("2d");
-            var canvasCopy = document.createElement("canvas");
-            var copyContext = canvasCopy.getContext("2d");
-
-            img.onload = function()
-            {
-                var ratio = 1;
-
-                if(img.width > maxWidth)
-                    ratio = maxWidth / img.width;
-                else if(img.height > maxHeight)
-                    ratio = maxHeight / img.height;
-
-                canvasCopy.width = img.width;
-                canvasCopy.height = img.height;
-                copyContext.drawImage(img, 0, 0);
-
-                canvas.width = img.width * ratio;
-                canvas.height = img.height * ratio;
-                ctx.drawImage(canvasCopy, 0, 0, canvasCopy.width, canvasCopy.height, 0, 0, canvas.width, canvas.height);
-            };
-
-            img.src = reader.result;
-
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#imgInp").change(function(){
-    readURL(this);
-});
-
-/*
 var UserModel = Backbone.Model.extend({
     urlRoot: '/user',
 });
@@ -161,12 +124,28 @@ var UserCollection = Backbone.Collection.extend({
 var users = new UserCollection();
 users.fetch();
 
-$("#postphoto").click(function(){
-    var messageText = $("#message").val();
-    messages.create({message: messageText}, {wait: true});
-    $("#message").val("");
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+            console.log('RESULT', reader.result)
+            var user = users.get(userid)
+            console.log(user)
+            user.set({image:reader.result}, {wait: true});
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imgInp").change(function(){
+    readURL(this);
 });
-*/
+
+
+
 </script>
 
 </html>
