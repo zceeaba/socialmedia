@@ -46,19 +46,13 @@ module.exports.routes = {
   'get /signup': { view: 'pages/signup' },
   'post /signup':'AuthenticationController.signup',
   '/chat':'ChatRoomController.chat',
+  '/chooseroomname':'MessagesController.chooseroomname',
+
+
+  //chatroom routes not required to be rendered:dont need to be bootstrapped
   '/createroom':'ChatroomController.createchatroom',
   '/listchatrooms':'ChatRoomController.findchatrooms',
   '/connecteventtochatroom':'ChatRoomController.connecteventtochatroom',
-  '/chooseroomname':'MessagesController.chooseroomname',
-
-  /*
-
-  '/subscribe': 'MessagesController.subscribe',
-
-
-  '/testsocket':'ChatroomController.testsocket',
-  '/testpage':{ view: 'pages/socketpage' },
-*/
 
   /***************************************************************************
   *                                                                          *

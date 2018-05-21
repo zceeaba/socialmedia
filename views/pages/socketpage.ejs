@@ -5,23 +5,7 @@
 <!-- Example usage -->
 <script type="text/javascript">
 
-// `io` is available as a global.
-// `io.socket` will connect automatically, but at this point in the DOM, it is not ready yet
-// (think of $(document).ready() from jQuery)
-//
-// Fortunately, this library provides an abstraction to avoid this issue.
-// Requests you make before `io` is ready will be queued and replayed automatically when the socket connects.
-// To disable this behavior or configure other things, you can set properties on `io.sails`.
-// You have one cycle of the event loop to set `io.sails.autoConnect` to false before the auto-connection
-// behavior starts.
-// Note--the latest sails socket client connects automatically!
 
-// Get all of the existing users--also subscribes to socket events
-// for those users
-
-io.socket.get('/testsocket', function (data) {
-  console.log('Socket `' + data.anyData + '` joined the party!');
-});
 
 // When a socket message about a user is received, display it
 io.socket.on('messages', function(data) {

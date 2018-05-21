@@ -38,7 +38,7 @@ module.exports = {
     var listofrooms;
     User.findOne({id:request.user.id}).populate('rooms').exec(function(err, userobject){
       listofrooms=JSON.parse(JSON.stringify(userobject.rooms));
-      return response.view('pages/chatroom',{username:request.user.username,listofrooms:listofrooms})
+      return response.view('pages/chatroomviews/chatroom',{username:request.user.username,listofrooms:listofrooms})
     });
   }
   else {
