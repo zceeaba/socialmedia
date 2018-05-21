@@ -43,6 +43,12 @@ body, html {
   overflow-y: scroll;
 }
 
+
+#logo-div {
+  height: 50%;
+  width: 50%;
+}
+
 #logo {
-  object-fit: cover;
+  margin: -500px -500px -500px -500px;
 }
