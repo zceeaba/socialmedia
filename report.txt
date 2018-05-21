@@ -1,9 +1,8 @@
-1.Created user model with different attributes:
+1. Created user model with different attributes:
   1.Username,password,Email,Name,surname
   2.Peformed validation for the different fields
 
-2.Done authentication
-3.File heirarchy:
+2.File heirarchy:
   Assets:
   1.importer.css
   2.js/sails.io.js
@@ -35,3 +34,31 @@
   2.events
   3.Messages
   4.User
+
+2. Done authentication
+
+3. Used chrome devtools to debug and check if the pages work on mobile devices.
+
+4. Use (req.user) to check if the current session is authenticated - Passport background session stuffs
+
+5. In sails layout.ejs your styles and scripts need to be outside the commented section as it is overwritten by Sails
+
+6. pages are dynamic and fit to mobile devices. for example the navigation bar changes into a dropdown menu if visited on a mobile device.
+
+7. Routing and policies which only enable validated user to have access to certain aspects of the website.
+
+Background photo:
+- changed to png, resized and compressed it
+- changed intensity, contrast, brightness and other settings using gimp
+
+8. Custom css for footer and navbar
+
+9. Added SVG icons and links to Github repos
+
+10. "use strict" is pretty much implicit in new versions of JS
+
+11. using Atom IDE with ESlint to check the JS syntax
+
+12. Https enabled
+https://medium.freecodecamp.org/how-to-get-https-working-on-your-local-development-environment-in-5-minutes-7af615770eec
+
