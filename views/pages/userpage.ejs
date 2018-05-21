@@ -1,0 +1,151 @@
+<html>
+<head>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
+</head>
+<style type="text/css">
+#ProfilePage
+{
+    margin: 50px auto;
+    width: 635px;
+border: 1px solid red;
+}
+
+#Photo
+{
+    /* Width and height of photo container */
+    width: 200px;
+    height: 200px;
+
+/* For visibility. Delete me */
+border: 1px solid green;
+}
+
+#LeftCol
+{
+    /* Move it to the left */
+    float: left;
+    width: 200px;
+    text-align: center;
+    /* Move it away from the content */
+    margin-right: 20px;
+border: 1px solid brown;
+}
+#PhotoOptions
+{
+    text-align: center;
+    width: 200px;
+border: 1px solid brown;
+}
+#Info
+{
+    width: 400px;
+    text-align: center;
+    /* Move it to the right */
+    float: right;
+/* For visibility. Delete me */
+border: 1px solid blue;
+}
+#Info strong
+{
+    /* Give it a width */
+    display: inline-block;
+    width: 100px;
+/* For visibility. Delete me */
+border: 1px solid orange;
+}
+#Info span
+{
+    /* Give it a width */
+    display: inline-block;
+    width: 250px;
+/* For visibility. Delete me */
+border: 1px solid purple;
+}
+
+</style>
+<% if (req.user) { %>
+<body>
+<div id="ProfilePage">
+    <div id="LeftCol">
+        <div id="ProfileOptions">
+        <form id="form1" runat="server">
+          <input type='file' id="imgInp" />
+          <img id="blah" src="#" alt="your image" width="220" height="220" />
+        </form>
+      </div>
+    </div>
+
+    <div id="Info">
+        <p>
+            <strong>Name:</strong>
+            <span><%= req.user.username %></span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span><%= req.user.email %></span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span><%= req.user.name %><</span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span><%= req.user.surname %></span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span><%= req.user.password %></span>
+        </p>
+        <p>
+          <strong>ID:</strong>
+          <span><%= req.user.id %></span>
+    </div>
+    <!-- Needed because other elements inside ProfilePage have floats -->
+    <div style="clear:both"></div>
+</div>
+</body>
+<script>
+  let userid="<%= req.user.id %>"
+</script>
+<% } %>
+<script type='text/javascript'>
+var UserModel = Backbone.Model.extend({
+    urlRoot: '/user',
+});
+
+var UserCollection = Backbone.Collection.extend({
+    url: '/user',
+    model: UserModel,
+});
+
+var users = new UserCollection();
+users.fetch();
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+            console.log('RESULT', reader.result)
+            var user = users.get(userid)
+            console.log(user)
+            user.set({image:reader.result}, {wait: true});
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imgInp").change(function(){
+    readURL(this);
+});
+
+
+
+</script>
+
+</html>

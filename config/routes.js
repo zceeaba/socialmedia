@@ -35,6 +35,27 @@ module.exports.routes = {
     }
   },
   'post /login': 'AuthenticationController.login',
+
+
+
+  'get /userpage':{view:'pages/userpage'},
+
+
+  'get /eventslist':'EventsController.findevents',
+  '/createevent':{view:'pages/createevent'},
+  'get /usereventjoin':'EventsController.connecteventtouser',
+  'get /showevents':'EventsController.showevents',
+  'get /finishedcreateevent':'EventsController.createevent',
+
+  '/chat':'ChatRoomController.chat',
+  '/chooseroomname':'MessagesController.chooseroomname',
+
+
+  //chatroom routes not required to be rendered:dont need to be bootstrapped
+  '/createroom':'ChatroomController.createchatroom',
+  '/listchatrooms':'ChatRoomController.findchatrooms',
+  '/connecteventtochatroom':'ChatRoomController.connecteventtochatroom',
+
   '/logout': 'AuthenticationController.logout',
 
   'get /signup': {

@@ -1,0 +1,16 @@
+<html>
+<!-- Import SDK (if using the linker, then this will be injected automatically) -->
+<script type="text/javascript" src="/dependencies/sails.io.js"></script>
+
+<!-- Example usage -->
+<script type="text/javascript">
+
+
+
+// When a socket message about a user is received, display it
+io.socket.on('messages', function(data) {
+    console.log(data);
+});
+
+</script>
+</html>

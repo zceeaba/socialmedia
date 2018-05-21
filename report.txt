@@ -2,6 +2,39 @@
   1.Username,password,Email,Name,surname
   2.Peformed validation for the different fields
 
+2.File heirarchy:
+  Assets:
+  1.importer.css
+  2.js/sails.io.js
+  3.js/socket.io.js
+  4.linker/js/app.js
+  5.linker/js/jquery-2.1.0.min.js
+  6.assets/styles/bootstrap.min.css
+  Config:
+  1.bootstrap.js
+  2.socket.js
+  3.routes.js
+  Views:
+  1.layout.ejs
+  2.chat.ejs
+  3.chatroom.ejs
+  4.chooseroomname.ejs
+  5.createchatroom.ejs
+  6.eventslist.ejs
+  7.showevents.ejs
+  8.signup.ejs
+  9.userpage.ejs
+  Api/Controller:
+  1.AuthenticationController
+  2.EventsController
+  3.MessagesController
+  4.ChatRoomController
+  Api/Model:
+  1.ChatRooms
+  2.events
+  3.Messages
+  4.User
+
 2. Done authentication
 
 3. Used chrome devtools to debug and check if the pages work on mobile devices.
@@ -28,3 +61,4 @@ Background photo:
 
 12. Https enabled
 https://medium.freecodecamp.org/how-to-get-https-working-on-your-local-development-environment-in-5-minutes-7af615770eec
+

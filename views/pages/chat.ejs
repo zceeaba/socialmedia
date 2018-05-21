@@ -1,0 +1,115 @@
+<html>
+<h2>Welcome <%= username %></h2>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
+<!-- Bring in the socket.io client -->
+<script type="text/javascript" src="/js/socket.io.js"></script>
+<!-- then beef it up with some convenience logic for talking to Sails.js -->
+<script type="text/javascript" src="/dependencies/sails.io.js"></script>
+
+<!-- listen on socket.io for incoming messages -->
+<script type="text/javascript" src="/js/app.js"></script>
+
+
+<body>
+<div id="newMessageForm">
+    <textarea id="message" placeholder="Enter your message here:"></textarea>
+    <button id="postMessageButton">Add Message</button>
+</div>
+<div id="messagesContainer">
+</div>
+</body>
+<script>
+let username="<%= username %>"
+let roomname="<%= roomname %>"
+
+</script>
+<script type="text/javascript">
+    var MessageModel = Backbone.Model.extend({
+        urlRoot: '/messages',
+    });
+
+    var SailsCollection = Backbone.Collection.extend({
+    sailsCollection: "",//new properties to the collection object
+    socket: null,//sailscollection:holds sails model,socket holds socket name
+    sync: function(method, model, options){
+        var where = {};
+        if (options.where) {//check if where clausses are sent and check for specific ids
+            where = {
+                where: options.where
+            }
+        }
+        if(typeof this.sailsCollection === "string" && this.sailsCollection !== "") {
+            this.socket = io.sails.connect();
+            this.socket.on("connect", _.bind(function(){
+                //this.socket.request({url: '/'+ this.sailsCollection,where:option.where}, _.bind(function(users){
+                options.url='/'+ this.sailsCollection
+                options.method='get'
+                this.socket.request(options, _.bind(function(users){
+                    this.set(users);
+                }, this));
+
+                this.socket.on("messages", _.bind(function(msg){
+                    var m = msg.verb;
+                    console.log("verb"+msg.data)
+                    if (m === "created") {
+                        this.add(msg.data);
+                    } else if (m === "updated") {
+                        this.get(msg.id).set(msg.data);
+                    } else if (m === "destroyed") {
+                        this.remove(this.get(msg.id));
+                    }
+                }, this));
+            }, this));
+          } else {
+            console.log("Error: Cannot retrieve models because property 'sailsCollection' not set on the collection");
+        }
+    }
+});
+
+
+    var MessageCollection = SailsCollection.extend({
+        sailsCollection: 'messages',
+        model: MessageModel,
+    });
+
+
+    var messages = new MessageCollection();
+
+    messages.fetch();
+
+
+    $("#postMessageButton").click(function(){
+        var messageText = $("#message").val();
+        console.log(roomname)
+        messages.create({username:username,content: messageText,roomname:roomname}, {wait: true});
+        $("#message").val("");
+    });
+    //add templateSettings to work with underscore instead of ejs
+        _.templateSettings = {
+        interpolate : /\{\{(.+?)\}\}/g
+    };
+    var MessagesView = Backbone.View.extend({
+        el: '#messagesContainer',//references dom object created in browser
+        initialize: function () {
+            this.collection.on('add', this.render, this);
+            this.render();
+        },
+        template: _.template("<div><p><b>{{ username }}:{{content}} </b></p></div>"),//compile the template using underscore
+            render: function () {//render the view object on browser
+                this.$el.html("");//load the compiled template into the backbone el
+                console.log(this.collection);
+                this.collection.each(function(msg){//each function is from jquery
+                    //console.log(msg.toJSON())
+                    this.$el.append(this.template(msg.toJSON()));//convert message to json and append to el
+                }, this)
+        }
+    });
+
+    var mView = new MessagesView({collection: messages});//create the view object
+
+</script>
+</html>

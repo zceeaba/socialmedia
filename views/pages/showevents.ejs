@@ -1,0 +1,19 @@
+<h1> Events</h1>
+<p> Welcome to the event creation page</p>
+<%if (req.user) { %>
+  <form method="get" action="/showevents">
+  <ul>
+  <% for(var i=0; i<eventobj.length; i++) {%>
+    <% eventobj[i].events.forEach(function(event){%>
+      <% console.log(JSON.stringify(event, null, '\t')) %>
+      <% for(var key in event) {%>
+        <% if(event.hasOwnProperty(key)){ %>
+          <li><%= key %>:<%= event[key] %></li>
+        <% } %>
+      <% }%>
+    <%});%>
+  <% } %>
+  </ul>
+  </form>
+
+<% } %>

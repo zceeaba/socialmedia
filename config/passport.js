@@ -39,6 +39,9 @@ passport.use(new LocalStrategy((username, password, cb) => {
       let userDetails = {
         email: user.email,
         username: user.username,
+        name: user.name,
+        surname: user.surname,
+        password: user.password,
         id: user.id
       };
 

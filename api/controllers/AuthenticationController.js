@@ -7,12 +7,13 @@ module.exports = {
       if ((err) || (!user)) {
         return res.view('pages/login', {errMessage: info.message});
       }
-
       req.logIn(user, (err) => {
         if (err) {
           return res.view('pages/login', {errMessage: err});
         }
-        return res.redirect('/');
+        return res.view('pages/userpage', {
+          message: info.message,
+          user:user});
       });
     })(req, res);
   },

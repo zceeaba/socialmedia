@@ -26,7 +26,6 @@ module.exports = {
       type: 'string',
       isEmail: true,
       required: true,
-      unique: true,
     },
     name: {
       type: 'string',
@@ -36,6 +35,17 @@ module.exports = {
       type: 'string',
       required: true,
     },
+    events: {
+  collection: 'events',
+  via: 'Users'
+  },
+  rooms:{
+    collection:'ChatRooms',
+    via:'users'
+  },
+  image:{
+    type: 'string',
+  }
   },
 
   // to toggle if password is displayed
