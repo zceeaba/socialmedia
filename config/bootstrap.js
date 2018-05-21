@@ -10,8 +10,8 @@
  */
 
 module.exports.bootstrap = async function(done) {
-  sails.on('messages', function(req){
-   console.log("SOCKET request: ",req.method,req.url);
+  sails.on('messages', (req) => {
+    console.log('SOCKET request: ', req.method, req.url);
   });
 
   // By convention, this is a good place to set up fake data during development.

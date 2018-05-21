@@ -6,21 +6,26 @@
  */
 
 module.exports = {
-    chooseroomname:function(request,response){
-      if(request.user){
-        User.find({id:request.user.id}).exec(function(err,userobject){
-          User.find({id:request.user.id}).populate('events').exec(function(err,eventobject){
-            return response.view('pages/chooseroomname',{eventobj:eventobject});
+  chooseroomname: function(request, response) {
+    if (request.user) {
+      User.find({
+        id: request.user.id
+      }).exec((err, userobject) => {
+        User.find({
+          id: request.user.id
+        }).populate('events').exec((err, eventobject) => {
+          return response.view('pages/chooseroomname', {
+            eventobj: eventobject
           });
-        })
-      }
-      else{
-        response.redirect("/")
-      }
-    },
+        });
+      });
+    } else {
+      response.redirect('/');
+    }
+  },
 
-    subscribe: function(req, res) {
-    if( ! req.isSocket) {
+  subscribe: function(req, res) {
+    if (!req.isSocket) {
       return res.badRequest();
     }
 
@@ -31,4 +36,4 @@ module.exports = {
   _config: {}
 
 
-}
+};

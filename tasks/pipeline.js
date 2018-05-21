@@ -62,6 +62,7 @@ var cssFilesToInject = [
 var jsFilesToInject = [
 
   // Load `sails.io` before everything else.
+  'dependencies/socket.io.js',
   'dependencies/sails.io.js',
 
   // Bring in `.js` files for any other client-side JavaScript dependencies.

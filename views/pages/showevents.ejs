@@ -1,19 +1,28 @@
-<h1> Events</h1>
-<p> Welcome to the event creation page</p>
 <%if (req.user) { %>
-  <form method="get" action="/showevents">
-  <ul>
-  <% for(var i=0; i<eventobj.length; i++) {%>
-    <% eventobj[i].events.forEach(function(event){%>
-      <% console.log(JSON.stringify(event, null, '\t')) %>
-      <% for(var key in event) {%>
-        <% if(event.hasOwnProperty(key)){ %>
-          <li><%= key %>:<%= event[key] %></li>
-        <% } %>
-      <% }%>
-    <%});%>
-  <% } %>
-  </ul>
-  </form>
+  <div class="container col-sm-6 mt-5">
+    <h2 class="text-center">List of Events</h2>
+    <hr/>
 
-<% } %>
+    <div id="messagesContainer">
+      <% for(var i=0; i<eventobj.length; i++) { %>
+        <% eventobj[i].events.forEach(function(event){ %>
+          <% console.log(JSON.stringify(event, null, '\t')) %>
+            <div>
+              <% for(var key in event) {%>
+                <% if(event.hasOwnProperty(key)){ %>
+
+                  <% if (!key.includes('created') && !key.includes('id') && !key.includes('updated')) { %>
+                    <% let first = key.substring(5, ).charAt(0).toUpperCase() %>
+                      <label><strong><%= first + key.substring(6,); %>:</strong></label>
+                      <%= event[key] %>
+                    <% } %>
+                <% } %>
+              <% }%>
+            </div>
+        <%});%>
+      <% } %>
+
+    </div>
+  </div>
+
+  <% } %>

@@ -36,26 +36,26 @@ module.exports = {
       required: true,
     },
     events: {
-  collection: 'events',
-  via: 'Users'
-  },
-  rooms:{
-    collection:'ChatRooms',
-    via:'users'
-  },
-  image:{
-    type: 'string',
-  }
+      collection: 'events',
+      via: 'Users'
+    },
+    rooms: {
+      collection: 'ChatRooms',
+      via: 'users'
+    },
+    image: {
+      type: 'string',
+    }
   },
 
   // to toggle if password is displayed
   customToJSON: function() {
     // Return a shallow copy of this record with the password and ssn removed.
-    return _.omit(this, ['password'])
+    return _.omit(this, ['password']);
   },
 
   beforeCreate: function(user, proceed) {
-    bcrypt.hash(user.password, 10, function(err, hash) {
+    bcrypt.hash(user.password, 10, (err, hash) => {
       if (err) {
         return proceed(err);
       } else {

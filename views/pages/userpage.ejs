@@ -1,73 +1,6 @@
-<html>
-<head>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 
-</head>
-<style type="text/css">
-#ProfilePage
-{
-    margin: 50px auto;
-    width: 635px;
-border: 1px solid red;
-}
-
-#Photo
-{
-    /* Width and height of photo container */
-    width: 200px;
-    height: 200px;
-
-/* For visibility. Delete me */
-border: 1px solid green;
-}
-
-#LeftCol
-{
-    /* Move it to the left */
-    float: left;
-    width: 200px;
-    text-align: center;
-    /* Move it away from the content */
-    margin-right: 20px;
-border: 1px solid brown;
-}
-#PhotoOptions
-{
-    text-align: center;
-    width: 200px;
-border: 1px solid brown;
-}
-#Info
-{
-    width: 400px;
-    text-align: center;
-    /* Move it to the right */
-    float: right;
-/* For visibility. Delete me */
-border: 1px solid blue;
-}
-#Info strong
-{
-    /* Give it a width */
-    display: inline-block;
-    width: 100px;
-/* For visibility. Delete me */
-border: 1px solid orange;
-}
-#Info span
-{
-    /* Give it a width */
-    display: inline-block;
-    width: 250px;
-/* For visibility. Delete me */
-border: 1px solid purple;
-}
-
-</style>
 <% if (req.user) { %>
-<body>
+
 <div id="ProfilePage">
     <div id="LeftCol">
         <div id="ProfileOptions">
@@ -106,7 +39,8 @@ border: 1px solid purple;
     <!-- Needed because other elements inside ProfilePage have floats -->
     <div style="clear:both"></div>
 </div>
-</body>
+
+
 <script>
   let userid="<%= req.user.id %>"
 </script>
@@ -147,5 +81,3 @@ $("#imgInp").change(function(){
 
 
 </script>
-
-</html>

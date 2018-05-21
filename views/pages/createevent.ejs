@@ -1,13 +1,37 @@
-<h1> Events</h1>
-<p> Welcome to the event creation page</p>
 <%if (req.user) { %>
-<form action="/finishedcreateevent" method="get" id="createevent">
-    <label>Create Event:</label>
-    <input type="text" name="eventname" id="input"/>
-    <input type="text" name="eventtype" id="input"/>
-    <input type="text" name="eventdate" id="input"/>
-    <input type="text" name="eventstart" id="input"/>
-    <input type="text" name="eventend" id="input"/>
-    <input type="submit" value="submit" action="/finishedcreateevent">
-</form>
-<% } %>
+
+  <div class="container col-sm-4 mt-5">
+    <h2 class="text-center">Create an Event</h2>
+    <hr/>
+
+    <div class="form">
+      <form autocomplete="off" method="get" class="form-horizontal" role="form" action="/finishedcreateevent" id="createevent">
+        <div class="form-group pt-3">
+          <label style="width:80px;"><strong>Name</strong></label>
+          <input type="text" name="eventname" id="input" />
+        </div>
+        <div class="form-group">
+          <label style="width:80px;"><strong>Type</strong></label>
+          <input type="text" name="eventtype" id="input" />
+        </div>
+        <div class="form-group">
+          <label style="width:80px;"><strong>Date</strong></label>
+          <input type="text" name="eventdate" id="input" />
+        </div>
+        <div class="form-group">
+          <label style="width:80px;"><strong>Start</strong></label>
+          <input type="text" name="eventstart" id="input" />
+        </div>
+        <div class="form-group">
+          <label style="width:80px;"><strong>End</strong></label>
+          <input type="text" name="eventend" id="input" />
+        </div>
+
+        <div class="form-group w-25 pt-4">
+          <button type="submit" value="submit" class="btn btn-primary btn-block">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <% } %>

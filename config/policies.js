@@ -10,13 +10,15 @@
 
 module.exports.policies = {
 
-  '*': 'isLoggedIn',
+  '*': true,
 
-  AuthenticationController: {
-
-    'logIn': true,
-    'logout': true,
-    'signup': true
-  }
+  // '*': 'isLoggedIn',
+  //
+  // AuthenticationController: {
+  //
+  //   'logIn': true,
+  //   'logout': true,
+  //   'signup': true
+  // }
 
 };

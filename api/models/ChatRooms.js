@@ -8,14 +8,14 @@
 module.exports = {
 
   attributes: {
-    roomname:{
-      type:'string',
-      required:true,
-      unique:true
+    roomname: {
+      type: 'string',
+      required: true,
+      unique: true
     },
-    users:{
-      collection:'User',
-      via:'rooms'
+    users: {
+      collection: 'User',
+      via: 'rooms'
     }
   },
 

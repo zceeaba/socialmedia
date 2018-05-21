@@ -8,18 +8,18 @@
 module.exports = {
 
   attributes: {
-    roomname:{
-      type:'string',
-      required:true,
+    roomname: {
+      type: 'string',
+      required: true,
     },
     username: {
-        type: 'string',
-        required: true
+      type: 'string',
+      required: true
     },
 
     content: {
-        type: 'text',
-        required: true
+      type: 'string',
+      required: true
     },
 
   },
